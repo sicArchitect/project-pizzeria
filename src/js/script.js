@@ -134,17 +134,17 @@
 
         // find active product (product that has active class)
         const activeProducts = document.querySelector(
-          select.menuProduct.clickable
+          select.all.menuProductsActive
         );
 
         // if there is active product and it's not thisProduct.element, remove class active from it
         if (activeProducts != null && activeProducts != thisProduct.element) {
           activeProducts.classList.remove('active');
         }
-      });
 
-      // toggle active class on thisProduct.element
-      thisProduct.element.classList.toggle('active');
+        // toggle active class on thisProduct.element
+        thisProduct.element.classList.toggle('active');
+      });
     }
 
     initOrderForm() {

@@ -61,6 +61,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu();
+      thisProduct.getElements();
       thisProduct.initAccordion();
 
       console.log('new Product: ', thisProduct);
@@ -68,6 +69,9 @@
 
     renderInMenu() {
       const thisProduct = this;
+
+      // find the clickable trigger
+      //const clickableTrigger = document.querySelectorAll(select.menu.clickable);
 
       // generate HTML based on template
       const generatedHTML = templates.menuProduct(thisProduct.data);
@@ -81,16 +85,50 @@
       menuContainer.appendChild(thisProduct.element);
     }
 
+    getElements() {
+      const thisProduct = this;
+
+      // looking for product's header
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(
+        select.menuProduct.clickable
+      );
+      console.log('clickable: ', thisProduct.accordionTrigger);
+
+      // looking for order(?)
+      thisProduct.form = thisProduct.element.querySelector(
+        select.menuProduct.form
+      );
+      console.log('form: ', thisProduct.form);
+
+      // looking for all what we choose
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(
+        select.all.formInputs
+      );
+      console.log('formInputs: ', thisProduct.formInputs);
+
+      // looking for button which we press to add product
+      thisProduct.cartButton = thisProduct.element.querySelector(
+        select.menuProduct.cartButton
+      );
+      console.log('cartButton: ', thisProduct.cartButton);
+
+      // looking for price of product which we want add or remove from order
+      thisProduct.priceElem = thisProduct.element.querySelector(
+        select.menuProduct.priceElem
+      );
+      console.log('priceElement: ', thisProduct.priceElem);
+    }
+
     initAccordion() {
       const thisProduct = this;
 
       // find the clickable trigger (the element that should react to clicking)
-      const clickableTrigger = thisProduct.element.querySelectorAll(
-        select.menuProduct.clickable
-      );
+      // const clickableTrigger = thisProduct.element.querySelectorAll(
+      //   select.menuProduct.clickable
+      // );
 
       // START: add event listener to clickable trigger on event click
-      clickableTrigger.addEventListener('click', function (event) {
+      thisProduct.accordionTrigger.addEventListener('click', function (event) {
         // prevent default action for event
         event.preventDefault();
 
@@ -100,14 +138,13 @@
         );
 
         // if there is active product and it's not thisProduct.element, remove class active from it
-        if (activeProducts != null) {
+        if (activeProducts != null && activeProducts != thisProduct.element) {
           activeProducts.classList.remove('active');
         }
-        // toggle active class on thisProduct.element
-        else {
-          activeProducts.classList.add('active');
-        }
       });
+
+      // toggle active class on thisProduct.element
+      thisProduct.element.classList.toggle('active');
     }
 
     initOrderForm() {

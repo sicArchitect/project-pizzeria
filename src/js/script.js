@@ -63,8 +63,10 @@
       thisProduct.renderInMenu();
       thisProduct.getElements();
       thisProduct.initAccordion();
+      thisProduct.initOrderForm();
+      thisProduct.processOrder();
 
-      console.log('new Product: ', thisProduct);
+      //console.log('new Product: ', thisProduct);
     }
 
     renderInMenu() {
@@ -92,31 +94,31 @@
       thisProduct.accordionTrigger = thisProduct.element.querySelector(
         select.menuProduct.clickable
       );
-      console.log('clickable: ', thisProduct.accordionTrigger);
+      //console.log('clickable: ', thisProduct.accordionTrigger);
 
       // looking for order(?)
       thisProduct.form = thisProduct.element.querySelector(
         select.menuProduct.form
       );
-      console.log('form: ', thisProduct.form);
+      //console.log('form: ', thisProduct.form);
 
       // looking for all what we choose
       thisProduct.formInputs = thisProduct.form.querySelectorAll(
         select.all.formInputs
       );
-      console.log('formInputs: ', thisProduct.formInputs);
+      //console.log('formInputs: ', thisProduct.formInputs);
 
       // looking for button which we press to add product
       thisProduct.cartButton = thisProduct.element.querySelector(
         select.menuProduct.cartButton
       );
-      console.log('cartButton: ', thisProduct.cartButton);
+      //console.log('cartButton: ', thisProduct.cartButton);
 
       // looking for price of product which we want add or remove from order
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
-      console.log('priceElement: ', thisProduct.priceElem);
+      //console.log('priceElement: ', thisProduct.priceElem);
     }
 
     initAccordion() {
@@ -160,8 +162,6 @@
         event.preventDefault();
         thisProduct.processOrder();
       });
-
-      console.log('initOrderForm: ', thisProduct.initOrderForm());
     }
 
     processOrder() {
@@ -185,6 +185,21 @@
           // determine option value, e.g. optionId = 'olives', option = {label: 'Olives', price: 2, default: true}
           const option = param.options[optionId];
           console.log(optionId, option);
+
+          // check if there is param with a name of paramId in formData and if it includes optionId
+          if (formData[paramId] && formData[paramId].includes(optionId)) {
+            //check if the option is not default
+            if (!price.default == true) {
+              // add option price to price variable
+              price += option.price;
+            } else {
+              //check if the option is default
+              if (option.default == true) {
+                // reduce price variable
+                price -= option.price;
+              }
+            }
+          }
         }
       }
 

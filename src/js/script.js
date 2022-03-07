@@ -122,11 +122,6 @@
     initAccordion() {
       const thisProduct = this;
 
-      // find the clickable trigger (the element that should react to clicking)
-      // const clickableTrigger = thisProduct.element.querySelectorAll(
-      //   select.menuProduct.clickable
-      // );
-
       // START: add event listener to clickable trigger on event click
       thisProduct.accordionTrigger.addEventListener('click', function (event) {
         // prevent default action for event
@@ -155,8 +150,8 @@
         thisProduct.processOrder();
       });
 
-      for (let intput of thisProduct.formInputs) {
-        intput.addEventListener('change', function () {
+      for (let input of thisProduct.formInputs) {
+        input.addEventListener('change', function () {
           thisProduct.processOrder();
         });
       }
@@ -200,8 +195,11 @@
 
   const app = {
     initMenu: function () {
-      const testProduct = new Product();
-      console.log('test Product: ', testProduct);
+      const thisApp = this;
+
+      for (let productData in thisApp.data.products) {
+        new Product(productData, thisApp.data.products[productData]);
+      }
     },
 
     initData: function () {
@@ -209,10 +207,6 @@
 
       thisApp.data = dataSource;
       console.log('thisApp.data: ', thisApp.data);
-
-      for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
-      }
     },
     init: function () {
       const thisApp = this;

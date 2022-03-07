@@ -119,6 +119,11 @@
         select.menuProduct.priceElem
       );
       //console.log('priceElement: ', thisProduct.priceElem);
+
+      thisProduct.imageWrapper = thisProduct.element.querySelector(
+        select.menuProduct.imageWrapper
+      );
+      //console.log('imageWrapper: ', thisProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -192,11 +197,27 @@
             if (!price.default == true) {
               // add option price to price variable
               price += option.price;
+
+              // find image
+              const optionImage =
+                thisProduct.imageWrapper.querySelector('.paramId-optionId');
+
+              if (!optionImage == null) {
+                // add active to the image
+                imageSelector.classList.add('active');
+              }
             } else {
               //check if the option is default
               if (option.default == true) {
                 // reduce price variable
                 price -= option.price;
+
+                // find image
+                const optionImage =
+                  thisProduct.imageWrapper.querySelector('.paramId-optionId');
+
+                // remove active from the image
+                imageSelector.classList.remove('actoive');
               }
             }
           }

@@ -72,9 +72,6 @@
     renderInMenu() {
       const thisProduct = this;
 
-      // find the clickable trigger
-      //const clickableTrigger = document.querySelectorAll(select.menu.clickable);
-
       // generate HTML based on template
       const generatedHTML = templates.menuProduct(thisProduct.data);
 
@@ -94,36 +91,30 @@
       thisProduct.accordionTrigger = thisProduct.element.querySelector(
         select.menuProduct.clickable
       );
-      //console.log('clickable: ', thisProduct.accordionTrigger);
 
       // looking for order(?)
       thisProduct.form = thisProduct.element.querySelector(
         select.menuProduct.form
       );
-      //console.log('form: ', thisProduct.form);
 
       // looking for all what we choose
       thisProduct.formInputs = thisProduct.form.querySelectorAll(
         select.all.formInputs
       );
-      //console.log('formInputs: ', thisProduct.formInputs);
 
       // looking for button which we press to add product
       thisProduct.cartButton = thisProduct.element.querySelector(
         select.menuProduct.cartButton
       );
-      //console.log('cartButton: ', thisProduct.cartButton);
 
       // looking for price of product which we want add or remove from order
       thisProduct.priceElem = thisProduct.element.querySelector(
         select.menuProduct.priceElem
       );
-      //console.log('priceElement: ', thisProduct.priceElem);
 
       thisProduct.imageWrapper = thisProduct.element.querySelector(
         select.menuProduct.imageWrapper
       );
-      //console.log('imageWrapper: ', thisProduct.imageWrapper);
     }
 
     initAccordion() {
@@ -174,7 +165,7 @@
 
       // covert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']}
       const formData = utils.serializeFormToObject(thisProduct.form);
-      console.log('formData: ', formData);
+      //console.log('formData: ', formData);
 
       // set price to default price
       let price = thisProduct.data.price;
@@ -191,8 +182,11 @@
           const option = param.options[optionId];
           //console.log(optionId, option);
 
+          const optionChecking =
+            formData[paramId] && formData[paramId].includes(optionId);
+
           // check if there is param with a name of paramId in formData and if it includes optionId
-          if (formData[paramId] && formData[paramId].includes(optionId)) {
+          if (optionChecking) {
             //check if the option is not default
             if (!price.default == true) {
               // add option price to price variable
@@ -210,10 +204,10 @@
               '.' + paramId + '-' + optionId
             );
 
-            if (optionImage) {
+            if (optionImage && optionChecking) {
               // add active to the image
               optionImage.classList.add(classNames.menuProduct.imageVisible);
-            } else {
+            } else if (optionImage && !optionChecking) {
               // remove active from the image
               optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }

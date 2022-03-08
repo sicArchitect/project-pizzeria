@@ -198,19 +198,19 @@
                 price -= option.price;
               }
             }
+          }
 
-            // find image
-            const optionImage = thisProduct.imageWrapper.querySelector(
-              '.' + paramId + '-' + optionId
-            );
+          // find image
+          const optionImage = thisProduct.imageWrapper.querySelector(
+            '.' + paramId + '-' + optionId
+          );
 
-            if (optionImage && optionChecking) {
-              // add active to the image
-              optionImage.classList.add(classNames.menuProduct.imageVisible);
-            } else if (optionImage && !optionChecking) {
-              // remove active from the image
-              optionImage.classList.remove(classNames.menuProduct.imageVisible);
-            }
+          if (optionImage && optionChecking) {
+            // add active to the image
+            optionImage.classList.add(classNames.menuProduct.imageVisible);
+          } else if (optionImage && !optionChecking) {
+            // remove active from the image
+            optionImage.classList.remove(classNames.menuProduct.imageVisible);
           }
         }
       }

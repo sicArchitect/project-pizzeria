@@ -189,7 +189,7 @@
         for (let optionId in param.options) {
           // determine option value, e.g. optionId = 'olives', option = {label: 'Olives', price: 2, default: true}
           const option = param.options[optionId];
-          console.log(optionId, option);
+          //console.log(optionId, option);
 
           // check if there is param with a name of paramId in formData and if it includes optionId
           if (formData[paramId] && formData[paramId].includes(optionId)) {
@@ -197,28 +197,25 @@
             if (!price.default == true) {
               // add option price to price variable
               price += option.price;
-
-              // find image
-              const optionImage =
-                thisProduct.imageWrapper.querySelector('.paramId-optionId');
-
-              if (!optionImage == null) {
-                // add active to the image
-                imageSelector.classList.add('active');
-              }
             } else {
               //check if the option is default
               if (option.default == true) {
                 // reduce price variable
                 price -= option.price;
-
-                // find image
-                const optionImage =
-                  thisProduct.imageWrapper.querySelector('.paramId-optionId');
-
-                // remove active from the image
-                imageSelector.classList.remove('actoive');
               }
+            }
+
+            // find image
+            const optionImage = thisProduct.imageWrapper.querySelector(
+              '.' + paramId + '-' + optionId
+            );
+
+            if (optionImage) {
+              // add active to the image
+              optionImage.classList.add(classNames.menuProduct.imageVisible);
+            } else {
+              // remove active from the image
+              optionImage.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
         }

@@ -227,8 +227,78 @@
     constructor(element) {
       const thisWidget = this;
 
+      thisWidget.getElements(element);
+      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.initActions();
+
       console.log('AmountWidget', thisWidget);
       console.log('constructor arguments: ', element);
+    }
+
+    getElements(element) {
+      const thisWidget = this;
+
+      thisWidget.element = element;
+
+      // input is a amount of product
+      thisWidget.input = thisWidget.element.querySelector(
+        select.widgets.amount.input
+      );
+      // linkDecrease is a minus button
+      thisWidget.linkDecrease = thisWidget.element.querySelector(
+        select.widgets.amount.linkDecrease
+      );
+      // linkIncrease is a plus button
+      thisWidget.linkIncrease = thisWidget.element.querySelector(
+        select.widgets.amount.linkIncrease
+      );
+    }
+
+    // set value of input amount
+    setValue(value) {
+      const thisWidget = this;
+
+      const newValue = parseInt(value);
+
+      // Add validation
+
+      // current value
+      thisWidget.value = newValue;
+      // element DOM (html input in class widget-amount)
+      thisWidget.input.value = thisWidget.value;
+
+      if (thisWidget.value !== newValue && !isNaN(newValue)) {
+        thisWidget.value = newValue;
+        thisWidget.announce();
+      }
+
+      if (thisWidget.input.value > settings.amountWidget.defaultMax) {
+        this.value = settings.amountWidget.defaultMax;
+      } else if (thisWidget.input.value < settings.amountWidget.defaultMin) {
+        this.value = settings.amountWidget.defaultMin;
+      }
+    }
+
+    // use +/- buttons and write amount to input
+    initActions() {
+      const thisWidget = this;
+
+      thisWidget.input.addEventListener('change', function () {
+        thisWidget.setValue(thisWidget.input.value);
+      });
+      thisWidget.linkDecrease.addEventListener('click', function () {
+        thisWidget.setValue(thisWidget.value - 1);
+      });
+      thisWidget.linkIncrease.addEventListener('click', function () {
+        thisWidget.setValue(thisWidget.value + 1);
+      });
+    }
+
+    announce() {
+      const thisWidget = this;
+
+      const event = new Event('updated');
+      thisWidget.element.dispatchEvent(event);
     }
   }
 

@@ -43,8 +43,8 @@
   const settings = {
     amountWidget: {
       defaultValue: 1,
-      defaultMin: 1,
-      defaultMax: 9,
+      defaultMin: 0,
+      defaultMax: 10,
     },
   };
 
@@ -212,6 +212,9 @@
         }
       }
 
+      // multiply price by amount
+      //price *= thisProduct.amountWidget.value;
+
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
     }
@@ -220,6 +223,9 @@
       const thisProduct = this;
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
+      thisProduct.amountWidgetElem.addEventListener('update', function () {
+        thisProduct.processOrder();
+      });
     }
   }
 
@@ -269,14 +275,16 @@
 
       if (thisWidget.value !== newValue && !isNaN(newValue)) {
         thisWidget.value = newValue;
-        thisWidget.announce();
       }
 
-      if (thisWidget.input.value > settings.amountWidget.defaultMax) {
+      if (thisWidget.input.value >= settings.amountWidget.defaultMax) {
         this.value = settings.amountWidget.defaultMax;
-      } else if (thisWidget.input.value < settings.amountWidget.defaultMin) {
+      } else if (thisWidget.input.value <= settings.amountWidget.defaultMin) {
         this.value = settings.amountWidget.defaultMin;
       }
+
+      thisWidget.input.value = thisWidget.value;
+      thisWidget.announce();
     }
 
     // use +/- buttons and write amount to input
@@ -286,10 +294,12 @@
       thisWidget.input.addEventListener('change', function () {
         thisWidget.setValue(thisWidget.input.value);
       });
-      thisWidget.linkDecrease.addEventListener('click', function () {
+      thisWidget.linkDecrease.addEventListener('click', function (element) {
+        element.preventDefault();
         thisWidget.setValue(thisWidget.value - 1);
       });
-      thisWidget.linkIncrease.addEventListener('click', function () {
+      thisWidget.linkIncrease.addEventListener('click', function (element) {
+        element.preventDefault();
         thisWidget.setValue(thisWidget.value + 1);
       });
     }

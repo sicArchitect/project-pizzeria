@@ -71,7 +71,7 @@
     amountWidget: {
       defaultValue: 1,
       defaultMin: 1,
-      defaultMax: 9,
+      defaultMax: 10,
     }, // CODE CHANGED
     // CODE ADDED START
     cart: {
@@ -354,8 +354,8 @@
 
       thisCart.products = [];
 
-      thisCart.initActions();
       thisCart.getElements(element);
+      thisCart.initActions();
 
       console.log('new Cart', thisCart);
     }

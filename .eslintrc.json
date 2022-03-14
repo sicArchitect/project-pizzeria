@@ -17,6 +17,7 @@
     "no-console": ["off"]
   },
   "globals": {
-    "Handlebars": false
+    "Handlebars": false,
+    "dataSource": true
   }
 }

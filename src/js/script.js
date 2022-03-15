@@ -274,8 +274,8 @@
       thisWidget.setValue(settings.amountWidget.defaultValue);
       thisWidget.initActions();
 
-      console.log('AmountWidget', thisWidget);
-      console.log('constructor arguments: ', element);
+      //console.log('AmountWidget', thisWidget);
+      //console.log('constructor arguments: ', element);
     }
 
     getElements(element) {
@@ -363,20 +363,22 @@
     getElements(element) {
       const thisCart = this;
 
-      thisCart.dom = {};
-      thisCart.dom.wrapper = element;
+      thisCart.dom = {
+        toggleTrigger: element.querySelector(select.cart.toggleTrigger),
+        productList: element.querySelector(select.cart.cartProduct),
+      };
 
-      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(
-        select.cart.toggleTrigger
-      );
+      thisCart.dom.wrapper = element;
     }
 
     initActions() {
       const thisCart = this;
 
       thisCart.dom.toggleTrigger.addEventListener('click', function (event) {
-        console.log(event);
+        event.preventDefault();
       });
+
+      thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
     }
   }
 
@@ -411,7 +413,7 @@
       const thisApp = this;
 
       const cartElem = document.querySelector(select.containerOf.cart);
-      thisApp.car = new Cart(cartElem);
+      thisApp.cart = new Cart(cartElem);
     },
   };
 

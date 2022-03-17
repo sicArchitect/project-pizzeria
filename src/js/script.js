@@ -81,6 +81,7 @@
   };
 
   const templates = {
+    // compiles a template created in HTML, then puts it in a variable that becomes a function (or object)
     menuProduct: Handlebars.compile(
       document.querySelector(select.templateOf.menuProduct).innerHTML
     ),
@@ -251,10 +252,11 @@
         }
       }
 
+      // single price
+      thisProduct.priceSingle = price;
+
       /* multiply price by amount */
       price *= thisProduct.amountWidget.value;
-
-      thisProduct.priceSingle = price;
 
       /* update calculated price in the HTML */
       thisProduct.priceElem.innerHTML = price;

@@ -581,8 +581,8 @@
         },
       });
 
-      thisCartProduct.don.wrapper.dispatchEvent(event);
-      console.log(event);
+      thisCartProduct.dom.wrapper.dispatchEvent(event);
+      thisCartProduct.dom.wrapper.remove();
     }
 
     initActions() {

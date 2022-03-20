@@ -469,6 +469,7 @@
 
       thisCart.dom.form.addEventListener('submit', function (event) {
         event.preventDefault();
+        thisCart.sendOrder();
       });
     }
 
@@ -496,23 +497,24 @@
       // current price
       let deliveryFee = settings.cart.defaultDeliveryFee;
       // total ordered products
-      let totalNumber = 0;
+      thisCart.totalNumber = 0;
       // total price of order
-      let subtotalPrice = 0;
+      thisCart.subtotalPrice = 0;
 
-      for (const product of thisCart.products) {
-        totalNumber += product.amount;
-        subtotalPrice += product.price;
+      for (let product of thisCart.products) {
+        thisCart.totalNumber += product.amount;
+        thisCart.subtotalPrice += product.price;
       }
 
-      if (totalNumber <= 0) {
+      if (thisCart.totalNumber <= 0) {
         deliveryFee = 0;
       }
 
-      thisCart.dom.totalNumber.innerHTML = totalNumber;
+      thisCart.dom.totalPrice = thisCart.subtotalPrice + deliveryFee;
+
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
-      thisCart.dom.subtotalPrice.innerHTML = subtotalPrice;
-      thisCart.dom.totalPrice = subtotalPrice + deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
     }
 
     remove(instance) {
@@ -643,7 +645,7 @@
       });
     }
 
-    getData(element) {
+    getData() {
       const thisCartProduct = this;
 
       const orderData = {

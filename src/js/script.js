@@ -543,7 +543,9 @@
 
       thisCartProduct.dom = {
         wrapper: element,
-        amountWidget: element.querySelector(select.cartProduct.amountWidget),
+        amountWidgetElem: element.querySelector(
+          select.cartProduct.amountWidget
+        ),
         price: element.querySelector(select.cartProduct.price),
         edit: element.querySelector(select.cartProduct.edit),
         remove: element.querySelector(select.cartProduct.remove),
@@ -557,12 +559,16 @@
       thisCartProduct.amountWidget = new AmountWidget(
         thisCartProduct.dom.amountWidgetElem
       );
-      thisCartProduct.dom.amount.addEventListener('updated', function () {
-        thisCartProduct.amount = thisCartProduct.amount.value;
-        thisCartProduct.price =
-          thisCartProduct.priceSingle * thisCartProduct.dom.amount;
-        thisCartProduct.dom.price.innerHTML = thisCartProduct.dom.price;
-      });
+
+      thisCartProduct.dom.amountWidgetElem.addEventListener(
+        'updated',
+        function () {
+          thisCartProduct.amount = thisCartProduct.amountWidget.value;
+          thisCartProduct.price =
+            thisCartProduct.priceSingle * thisCartProduct.amount;
+          thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
+        }
+      );
     }
 
     remove() {
@@ -582,7 +588,10 @@
     initActions() {
       const thisCartProduct = this;
 
-      thisCartProduct.dom.edit.addEventListener('click');
+      thisCartProduct.dom.edit.addEventListener('click', function (event) {
+        event.preventDefault();
+      });
+
       thisCartProduct.dom.remove.addEventListener('click', function (event) {
         event.preventDefault();
         thisCartProduct.remove();

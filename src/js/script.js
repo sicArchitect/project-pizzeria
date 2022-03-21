@@ -429,9 +429,6 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.sendOrder();
-
-      //('new Cart', thisCart);
     }
 
     getElements(element) {
@@ -445,6 +442,8 @@
         totalPrice: element.querySelectorAll(select.cart.totalPrice),
         totalNumber: element.querySelector(select.cart.totalNumber),
         form: element.querySelector(select.cart.form),
+        address: element.querySelector(select.cart.address),
+        phone: element.querySelector(select.cart.phone),
       };
 
       thisCart.dom.wrapper = element;
@@ -464,7 +463,7 @@
       });
 
       thisCart.dom.productList.addEventListener('remove', function (event) {
-        thisCart.remove(event.detail.cartProduct);
+        thisCart.remove(event.detail.Cart);
       });
 
       thisCart.dom.form.addEventListener('submit', function (event) {
@@ -502,21 +501,23 @@
       thisCart.subtotalPrice = 0;
 
       for (let product of thisCart.products) {
-        thisCart.totalNumber += product.amount;
         thisCart.subtotalPrice += product.price;
+        thisCart.totalNumber += product.amount;
       }
 
       if (thisCart.totalNumber <= 0) {
         deliveryFee = 0;
       }
 
-      thisCart.dom.totalPrice.innerHTML = thisCart.subtotalPrice + deliveryFee;
+      thisCart.totalPrice = thisCart.subtotalPrice + deliveryFee;
 
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
 
-      thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
+      thisCart.dom.totalPrice.forEach((element) => {
+        element.innerHTML = thisCart.totalPrice;
+      });
     }
 
     remove(instance) {
@@ -536,8 +537,8 @@
       const thisCart = this;
 
       const payload = {
-        address: thisCart.dom.address,
-        phone: thisCart.dom.phone,
+        address: thisCart.dom.address.value,
+        phone: thisCart.dom.phone.value,
         totalPrice: thisCart.dom.totalPrice,
         subtotalPrice: thisCart.dom.subtotalPrice,
         totalNumber: thisCart.dom.totalNumber,

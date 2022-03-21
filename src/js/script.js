@@ -539,9 +539,9 @@
       const payload = {
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
-        totalPrice: thisCart.dom.totalPrice,
-        subtotalPrice: thisCart.dom.subtotalPrice,
-        totalNumber: thisCart.dom.totalNumber,
+        totalPrice: thisCart.totalPrice,
+        subtotalPrice: thisCart.subtotalPrice,
+        totalNumber: thisCart.totalNumber,
         deliveryFee: settings.cart.defaultDeliveryFee,
         products: [],
       };

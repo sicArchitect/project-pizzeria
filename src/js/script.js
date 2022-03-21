@@ -429,7 +429,7 @@
 
       thisCart.getElements(element);
       thisCart.initActions();
-      thisCart.sendOrder(element);
+      thisCart.sendOrder();
 
       //('new Cart', thisCart);
     }
@@ -442,7 +442,7 @@
         productList: element.querySelector(select.cart.productList),
         deliveryFee: element.querySelector(select.cart.deliveryFee),
         subtotalPrice: element.querySelector(select.cart.subtotalPrice),
-        totalPrice: element.querySelector(select.cart.totalPrice),
+        totalPrice: element.querySelectorAll(select.cart.totalPrice),
         totalNumber: element.querySelector(select.cart.totalNumber),
         form: element.querySelector(select.cart.form),
       };
@@ -510,11 +510,13 @@
         deliveryFee = 0;
       }
 
-      thisCart.dom.totalPrice = thisCart.subtotalPrice + deliveryFee;
+      thisCart.dom.totalPrice.innerHTML = thisCart.subtotalPrice + deliveryFee;
 
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.deliveryFee.innerHTML = deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+
+      thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice;
     }
 
     remove(instance) {
@@ -530,16 +532,16 @@
       thisCart.update();
     }
 
-    sendOrder(element) {
+    sendOrder() {
       const thisCart = this;
 
       const payload = {
-        address: element.querySelector(select.cart.address),
-        phone: element.querySelector(select.cart.phone),
-        totalPrice: element.querySelector(select.cart.totalPrice),
-        subtotalPrice: element.querySelector(select.cart.subtotalPrice),
-        totalNumber: element.querySelector(select.cart.totalNumber),
-        deliveryFee: element.querySelector(select.cart.deliveryFee),
+        address: thisCart.dom.address,
+        phone: thisCart.dom.phone,
+        totalPrice: thisCart.dom.totalPrice,
+        subtotalPrice: thisCart.dom.subtotalPrice,
+        totalNumber: thisCart.dom.totalNumber,
+        deliveryFee: settings.cart.defaultDeliveryFee,
         products: [],
       };
 

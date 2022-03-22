@@ -463,7 +463,7 @@
       });
 
       thisCart.dom.productList.addEventListener('remove', function (event) {
-        thisCart.remove(event.detail.Cart);
+        thisCart.remove(event.detail.cartProduct);
       });
 
       thisCart.dom.form.addEventListener('submit', function (event) {
@@ -638,10 +638,6 @@
 
     initActions() {
       const thisCartProduct = this;
-
-      thisCartProduct.dom.edit.addEventListener('click', function (event) {
-        event.preventDefault();
-      });
 
       thisCartProduct.dom.remove.addEventListener('click', function (event) {
         event.preventDefault();

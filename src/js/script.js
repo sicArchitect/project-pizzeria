@@ -530,6 +530,7 @@
       /* method changes the contents of an array by removing or replacing existing elements */
       list.splice(indexOfProducts, 1);
 
+      instance.dom.wrapper.remove();
       thisCart.update();
     }
 
@@ -633,7 +634,6 @@
       });
 
       thisCartProduct.dom.wrapper.dispatchEvent(event);
-      thisCartProduct.dom.wrapper.remove();
     }
 
     initActions() {

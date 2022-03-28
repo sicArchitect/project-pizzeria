@@ -1,6 +1,5 @@
 import { select, classNames, templates } from '../settings.js';
 import utils from '../utils.js';
-import app from '../app.js';
 import AmountWidget from './AmountWidget.js';
 
 class Product {
@@ -192,19 +191,21 @@ class Product {
   addToCart() {
     const thisProduct = this;
 
-    // thisProduct.name = thisProduct.data.name;
-    // thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.name = thisProduct.data.name;
+    thisProduct.amount = thisProduct.amountWidget.value;
+    thisProduct.priceSingle = thisProduct.priceSingle;
+    thisProduct.price =
+      thisProduct.priceSingle * thisProduct.amountWidget.value;
 
-    // const event = new CustomEvent('add-to-cart', {
-    //   bubbles: true,
-    //   details: {
-    //     product: thisProduct,
-    //   },
-    // });
+    const event = new CustomEvent('add-to-cart', {
+      bubbles: true,
+      detail: {
+        product: thisProduct,
+      },
+    });
 
-    app.cart.add(thisProduct.prepareCartProduct());
-
-    //thisProduct.element.dispatchEvent(event);
+    //`app.cart.add(thisProduct.prepareCartProduct());
+    thisProduct.element.dispatchEvent(event);
   }
 
   /* assingning data to a product summary object */

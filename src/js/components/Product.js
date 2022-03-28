@@ -191,11 +191,10 @@ class Product {
   addToCart() {
     const thisProduct = this;
 
-    thisProduct.name = thisProduct.data.name;
-    thisProduct.amount = thisProduct.amountWidget.value;
-    thisProduct.priceSingle = thisProduct.priceSingle;
-    thisProduct.price =
-      thisProduct.priceSingle * thisProduct.amountWidget.value;
+    thisProduct.name = thisProduct.prepareCartProduct().name;
+    thisProduct.amount = thisProduct.prepareCartProduct().amount;
+    thisProduct.priceSingle = thisProduct.prepareCartProduct().priceSingle;
+    thisProduct.price = thisProduct.prepareCartProduct().price;
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,

@@ -195,6 +195,7 @@ class Product {
     thisProduct.amount = thisProduct.prepareCartProduct().amount;
     thisProduct.priceSingle = thisProduct.prepareCartProduct().priceSingle;
     thisProduct.price = thisProduct.prepareCartProduct().price;
+    thisProduct.params = thisProduct.prepareCartProduct().params;
 
     const event = new CustomEvent('add-to-cart', {
       bubbles: true,

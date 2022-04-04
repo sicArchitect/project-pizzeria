@@ -22,7 +22,9 @@ class Booking {
     thisBooking.dom = {
       wrapper: element.querySelector(select.containerOf.booking),
       peopleAmount: element.querySelector(select.booking.peopleAmount),
-      hoursAmount: element.querySelector(select.booking.hoursAmount),
+      //hoursAmount: element.querySelector(select.booking.hoursAmount),
+      datePicker: element.querySelector(select.widgets.datePicker.wrapper),
+      hourPicker: element.querySelector(select.widgets.hourPicker.wrapper),
     };
   }
   initWidgets() {
@@ -31,15 +33,9 @@ class Booking {
     thisBooking.peopleAmountElem = new AmountWidget(
       thisBooking.dom.peopleAmount
     );
-    thisBooking.hoursAmountElem = new AmountWidget(thisBooking.dom.hoursAmount);
-
-    // thisBooking.dom.hoursAmountElem.addEventListener('updated', function () {
-    //   thisBooking.peopleAmountValue = thisBooking.peopleAmount.value;
-    // });
-
-    // thisBooking.dom.peopleAmounElem.addEventListener('updated', function () {
-    //   thisBooking.hoursAmountValue = thisBooking.peopleAmount.value;
-    // });
+    //thisBooking.hoursAmountElem = new AmountWidget(thisBooking.dom.hoursAmount);
+    thisBooking.datePickerElem = new AmountWidget(thisBooking.dom.datePicker);
+    thisBooking.hourPickerElem = new AmountWidget(thisBooking.dom.hourPicker);
   }
 }
 

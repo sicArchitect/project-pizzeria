@@ -36,11 +36,11 @@ select {
   border-radius: $radius;
   padding: $base-size;
 
-  // CODE ADDED START
+  /* CODE ADDED START */
   &.error {
     border-color: $color-main;
   }
-  // CODE ADDED END
+  /* CODE ADDED END */
 }
 
 .checkbox {

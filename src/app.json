@@ -1,4 +1,6 @@
 {
+  "product": [],
+  "order": [],
   "events": [
     {
       "id": 1,
@@ -51,5 +53,15 @@
       "starters": ["lemonWater"]
     }
   ],
-  "bookings": []
+  "bookings": [
+    {
+      "id": 1,
+      "date": "2021-01-01",
+      "hour": "12:00",
+      "table": 1,
+      "duration": 3,
+      "ppl": 4,
+      "startes": ["water"]
+    }
+  ]
 }

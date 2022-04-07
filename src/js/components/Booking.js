@@ -61,22 +61,22 @@ class Booking {
         const eventsCurrentResponse = allResponse[1];
         const eventRepeatResponse = allResponse[2];
         return Promise.all([
-          bookingResponse.json,
-          eventsCurrentResponse.json,
-          eventRepeatResponse.json,
+          bookingResponse.json(),
+          eventsCurrentResponse.json(),
+          eventRepeatResponse.json(),
         ]);
       })
-      .then(function (booking, eventsCurrent, eventRepeat) {
-        thisBooking.parseData(booking, eventsCurrent, eventRepeat);
+      .then(function (bookings, eventsCurrent, eventRepeat) {
+        thisBooking.parseData(bookings, eventsCurrent, eventRepeat);
       });
   }
 
-  parseData(booking, eventsCurrent, eventRepeat) {
+  parseData(bookings, eventsCurrent, eventRepeat) {
     const thisBooking = this;
 
     thisBooking.booked = {};
 
-    for (let item of booking) {
+    for (let item of bookings) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
 
@@ -120,7 +120,7 @@ class Booking {
       hourBlock < startHour + duration;
       hourBlock += 0.5
     ) {
-      if (typeof thisBooking.booked[date][startHour] == 'undefined') {
+      if (typeof thisBooking.booked[date][hourBlock] == 'undefined') {
         thisBooking.booked[date][hourBlock] = [];
       }
 

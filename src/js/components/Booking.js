@@ -60,13 +60,14 @@ class Booking {
         const bookingResponse = allResponse[0];
         const eventsCurrentResponse = allResponse[1];
         const eventRepeatResponse = allResponse[2];
+
         return Promise.all([
           bookingResponse.json(),
           eventsCurrentResponse.json(),
           eventRepeatResponse.json(),
         ]);
       })
-      .then(function (bookings, eventsCurrent, eventRepeat) {
+      .then(function ([bookings, eventsCurrent, eventRepeat]) {
         thisBooking.parseData(bookings, eventsCurrent, eventRepeat);
       });
   }
@@ -78,6 +79,7 @@ class Booking {
 
     for (let item of bookings) {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
+      console.log('bookings: ', bookings);
     }
 
     for (let item of eventsCurrent) {
@@ -201,6 +203,8 @@ class Booking {
       thisBooking.updateDOM();
     });
   }
+
+  bookTable() {}
 }
 
 export default Booking;

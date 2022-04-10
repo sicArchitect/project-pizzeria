@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "flatpickr": "^4.6.11",
+    "heroku": "^7.60.1",
     "json-server": "^0.17.0",
     "postcss-scss": "^4.0.3",
     "syntax": "^1.6.2"

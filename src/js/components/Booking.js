@@ -74,7 +74,6 @@ class Booking {
       })
       .then(function ([bookings, eventsCurrent, eventsRepeat]) {
         thisBooking.parseData(bookings, eventsCurrent, eventsRepeat);
-        console.log('bookings: ', bookings);
       });
   }
 
@@ -91,8 +90,8 @@ class Booking {
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
     }
 
-    const minDate = thisBooking.datePickerElem.minDate;
-    const maxDate = thisBooking.datePickerElem.maxDate;
+    const minDate = thisBooking.datePicker.minDate;
+    const maxDate = thisBooking.datePicker.maxDate;
 
     for (let item of eventsRepeat) {
       if (item.repeat == 'daily') {
@@ -152,7 +151,7 @@ class Booking {
     }
 
     for (let table of thisBooking.dom.tables) {
-      let tableId = table.getAttribute(settings.booking.tableIdAttribute);
+      let tableId = table.getAttribute(settings.bookings.tableIdAttribute);
       if (!isNaN(tableId)) {
         tableId = parseInt(tableId);
       }
@@ -201,7 +200,7 @@ class Booking {
       select.booking.address
     );
     thisBooking.dom.tableId = thisBooking.dom.wrapper.querySelector(
-      settings.booking.tableIdAttribute
+      settings.bookings.tableIdAttribute
     );
 
     thisBooking.starters = [];
@@ -259,8 +258,6 @@ class Booking {
     thisBooking.element.addEventListener('click', function (event) {
       const clickedElement = event.target;
       const table = clickedElement.getAttribute(thisBooking);
-      console.log(table);
-      console.log('clickedElem', clickedElement);
       if (clickedElement != null) {
         if (
           !clickedElement.classList.contains(classNames.booking.tableBooked)

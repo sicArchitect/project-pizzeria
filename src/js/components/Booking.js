@@ -39,19 +39,19 @@ class Booking {
       booking:
         settings.db.url +
         '/' +
-        settings.db.booking +
+        settings.db.bookings +
         '?' +
         params.booking.join('&'),
       eventsCurrent:
         settings.db.url +
         '/' +
-        settings.db.event +
+        settings.db.events +
         '?' +
         params.eventsCurrent.join('&'),
       evensRepeat:
         settings.db.url +
         '/' +
-        settings.db.event +
+        settings.db.events +
         '?' +
         params.eventsRepeat.join('&'),
     };
@@ -258,17 +258,16 @@ class Booking {
 
     thisBooking.element.addEventListener('click', function (event) {
       const clickedElement = event.target;
-      const table = clickedElement.getAttribute(thisBooking.dom.tableId);
+      const table = clickedElement.getAttribute(thisBooking);
       console.log(table);
       console.log('clickedElem', clickedElement);
-
       if (clickedElement != null) {
         if (
           !clickedElement.classList.contains(classNames.booking.tableBooked)
         ) {
           console.log('table available');
           const tables = thisBooking.element.querySelectorAll(
-            thisBooking.dom.tables
+            select.booking.tables
           );
 
           for (let table of tables) {

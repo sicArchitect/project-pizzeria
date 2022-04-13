@@ -3,12 +3,14 @@ export const select = {
     menuProduct: '#template-menu-product',
     cartProduct: '#template-cart-product', // CODE ADDED
     bookingWidget: '#template-booking-widget',
+    homePage: '#template-home-page',
   },
   containerOf: {
     menu: '#product-list',
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    home: '.home-wrapper',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -37,6 +39,9 @@ export const select = {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
+    },
+    carousel: {
+      wrapper: '.main-carousel',
     },
   },
   cart: {
@@ -67,6 +72,7 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    homeLinks: '.home-links a',
   },
 };
 
@@ -106,7 +112,7 @@ export const settings = {
   datePicker: {
     maxDaysInFuture: 14,
   },
-  booking: {
+  bookings: {
     tableIdAttribute: 'data-table',
   },
   db: {
@@ -116,8 +122,8 @@ export const settings = {
       (window.location.hostname == 'localhost' ? ':3131' : ''),
     products: 'products',
     orders: 'orders',
-    booking: 'booking',
-    event: 'event',
+    bookings: 'bookings',
+    events: 'events',
     dateStartParamKey: 'date_gte',
     dateEndParamKey: 'date_lte',
     notRepeatParam: 'repeat=false',
@@ -135,5 +141,8 @@ export const templates = {
   ),
   bookingWidget: Handlebars.compile(
     document.querySelector(select.templateOf.bookingWidget).innerHTML
+  ),
+  homePage: Handlebars.compile(
+    document.querySelector(select.templateOf.homePage).innerHTML
   ),
 };

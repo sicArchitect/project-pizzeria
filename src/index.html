@@ -18,6 +18,10 @@
       href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
     />
     <link rel="stylesheet" href="vendor/range-slider.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flickity@2/dist/flickity.min.css"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -98,134 +102,173 @@
 
     <script id="template-home-page" type="text/x-handlebars-template">
       <div class="container">
-        <div class="row card-buttons home-links">
-          <div class="card-1 card ">
-            <div class="card-body">
-              <h1>Order online</h1>
-              <p>Delicious food delivered to your door</p>
-              <a href="#order" class="btn">
-              <img src="./images/assets/pizza-1.jpg" alt="">
-              </a>
-            </div>
+        <div class="home-links top">
+          <div class="home-order">
+            <h1>ORDER ONLINE</h1>
+            <a href="#order">
+              <img src="./images/assets/pizza-1.jpg">
+            </a>
           </div>
-          <div class="card-2 card ">
-            <div class="card-body">
-              <h1>Book a table</h1>
-              <p>Delicious food awaits you</p>
-              <a href="#booking" class="btn">
-                <img src="./images/assets/pizza-2.jpg" alt="">
-              </a>
-            </div>
+          <div class="home-table">
+            <h1>BOOK A TABLE</h1>
+            <a href="#booking">
+              <img src="./images/assets/pizza-2.jpg">
+            </a>
           </div>
         </div>
-        <div class="opening-hours container">
-          <h2>Opening hours</h2>
-          <p>Tue-Sun, 12PM - 12AM</p>
+        <div class="home-links bottom">
+          <div class="home-opening">
+              <h1>OPENING HOURS</h1>
+              <p>TUE-SUN, 12PM - 12AM</p>
+          </div>
         </div>
-        <div class="main-carousel">
+
+        <div class="carousel">
           <div class="carousel-cell">
-            <div class="box">
-              <div class="box-image">
-                <img src="./images/assets/pizza-3.jpg">
+            <div class="box-wrapper">
+              <div class="box-img">
+                <img src="./images/assets/pizza-4.jpg">
               </div>
               <div class="box-description">
-                <h2 class="box-tittle">Amazing service</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet magna at eleifend efficitur. Vestibulum convallis ultricies libero.</p>
-                <p>Author</p>
+                <h2>AMAZING SERVICE!</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut gravida ligula non tellus.</p>
+                <p>- Hans Klos</p>
               </div>
             </div>
           </div>
           <div class="carousel-cell">
-            <div class="box">
-              <div class="box-image">
-                <img src="./images/assets/pizza-3.jpg">
+            <div class="box-wrapper">
+              <div class="box-img">
+                <img src="./images/assets/pizza-5.jpg">
               </div>
               <div class="box-description">
-                <h2 class="box-tittle">Lovely atmosphere</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet magna at eleifend efficitur. Vestibulum convallis ultricies libero.</p>
-                <p>Author</p>
+                <h2>LOVELY ATMOSPHERE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam consectetur sollicitudin orci.
+                  <p>- Frode Frodson</p>
+                </p>
               </div>
             </div>
           </div>
           <div class="carousel-cell">
-            <div class="box">
-              <div class="box-image">
-                <img src="./images/assets/pizza-3.jpg">
+            <div class="box-wrapper">
+              <div class="box-img">
+                <img src="./images/assets/pizza-6.jpg">
               </div>
               <div class="box-description">
-                <h2 class="box-tittle">Authentic taste</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet magna at eleifend efficitur. Vestibulum convallis ultricies libero.</p>
-                <p>Author</p>
+                <h2>AUTHENTIC TASTE</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vehicula arcu a nisi sagittis fringilla.</p>
+                <p>- Hanna Tanna</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="wrap">
-          <div class="gallery">
-            <div class="row">
-              <div class="images-container">
-                <div class="image">
+        <div class="gallery">
+          <div class="gallery-wrapper">
+            <div class="gallery-row">
+              <div class="gallery-box">
+                <div class="gallery-image">
                   <img src="./images/assets/pizza-4.jpg">
-                  <div class="icon-container">
+                  <div class="gallery-icon">
                     <a href="#"><i class="fas fa-heart icon"></i></a>
                     <a href="#"><i class="fas fa-share-alt icon"></i></i></a>
                   </div>
                 </div>
+
               </div>
-              <div class="images-container">
-                <div class="image">
+              <div class="gallery-box">
+                <div class="gallery-image">
                   <img src="./images/assets/pizza-5.jpg">
-                  <div class="icon-container">
+                  <div class="gallery-icon">
                     <a href="#"><i class="fas fa-heart icon"></i></a>
                     <a href="#"><i class="fas fa-share-alt icon"></i></i></a>
                   </div>
                 </div>
+
               </div>
-              <div class="images-container">
-                <div class="image">
+              <div class="gallery-box">
+                <div class="gallery-image">
                   <img src="./images/assets/pizza-6.jpg">
-                  <div class="icon-container">
+                  <div class="gallery-icon">
                     <a href="#"><i class="fas fa-heart icon"></i></a>
                     <a href="#"><i class="fas fa-share-alt icon"></i></i></a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row">
-              <div class="images-container">
-                <div class="image">
+            <div class="gallery-row">
+              <div class="gallery-box">
+                <div class="gallery-image">
                   <img src="./images/assets/pizza-7.jpg">
-                  <div class="icon-container">
+                  <div class="gallery-icon">
                     <a href="#"><i class="fas fa-heart icon"></i></a>
                     <a href="#"><i class="fas fa-share-alt icon"></i></i></a>
                   </div>
                 </div>
+
               </div>
-              <div class="images-container">
-                <div class="image">
+              <div class="gallery-box">
+                <div class="gallery-image">
                   <img src="./images/assets/pizza-8.jpg">
-                  <div class="icon-container">
+                  <div class="gallery-icon">
                     <a href="#"><i class="fas fa-heart icon"></i></a>
                     <a href="#"><i class="fas fa-share-alt icon"></i></i></a>
                   </div>
                 </div>
+
               </div>
-              <div class="images-container">
-                <div class="image">
+              <div class="gallery-box">
+                <div class="gallery-image">
                   <img src="./images/assets/pizza-9.jpg">
-                  <div class="icon-container">
+                  <div class="gallery-icon">
                     <a href="#"><i class="fas fa-heart icon"></i></a>
                     <a href="#"><i class="fas fa-share-alt icon"></i></i></a>
                   </div>
                 </div>
+
               </div>
-            </div>
-            <div class="instagram">
-              <a href="#" class="instagram-link">View more on instagram</a>
             </div>
           </div>
+          <div class="footer">
+            <a href="#">View more on instagram</a>
+          </div>
+
         </div>
+
       </div>
+    </script>
+    <!--end of home page template-->
+
+    <script id="template-cart-product" type="text/x-handlebars-template">
+      <li>
+        <div class='widget-amount'>
+          <!-- widget-amount -->
+          <a class='btn-quantity btn-quantity--lt' href='#less'><i
+              class='fas fa-minus'
+            ></i></a>
+          <input class='amount' type='text' value='{{amount}}' />
+          <a class='btn-quantity btn-quantity--lt' href='#more'><i
+              class='fas fa-plus'
+            ></i></a>
+        </div>
+        <div class='cart__product'>
+          <div class='cart__product-header'>
+            <span>{{name}}</span>
+            <span>$<strong class='cart__product-price'>{{price}}</strong></span>
+          </div>
+          <ul class='cart__product-details no-spacing'>
+            {{#each params}}
+              <li>
+                <span class='cart__product-details-label'>{{label}}</span>
+                <span>{{#joinValues options}}, {{/joinValues}}</span>
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+        <ul class='cart__action-buttons no-spacing'>
+          <li><a href='#edit'>Edit<i class='fas fa-pencil-alt'></i></a></li>
+          <li><a href='#remove'>Remove<i class='fas fa-trash-alt'></i></a></li>
+        </ul>
+      </li>
     </script>
 
     <script id="template-cart-product" type="text/x-handlebars-template">
@@ -432,6 +475,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="vendor/range-slider.min.js" type="module"></script>
+    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="js/app.js" type="module"></script>
   </body>
 </html>

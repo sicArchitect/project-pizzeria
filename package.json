@@ -51,6 +51,7 @@
   },
   "dependencies": {
     "flatpickr": "^4.6.11",
+    "flickity": "^3.0.0",
     "heroku": "^7.60.1",
     "json-server": "^0.17.0",
     "postcss-scss": "^4.0.3",

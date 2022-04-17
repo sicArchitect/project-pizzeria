@@ -13,7 +13,7 @@ class Booking {
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-    //thisBooking.bookTables();
+    thisBooking.bookTables();
   }
 
   getData() {
@@ -158,9 +158,7 @@ class Booking {
 
       if (
         !allAvailabel &&
-        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(
-          tableId
-        ) > -1
+        thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ) {
         table.classList.add(classNames.booking.tableBooked);
       } else {
@@ -213,7 +211,7 @@ class Booking {
     thisBooking.datePicker = new DatePicker(thisBooking.dom.datePicker);
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
 
-    thisBooking.dom.wrapper.addEventListener('update', function () {
+    thisBooking.dom.wrapper.addEventListener('updated', function () {
       thisBooking.updateDOM();
     });
   }
@@ -240,6 +238,7 @@ class Booking {
       payload.duration,
       payload.table
     );
+    thisBooking.updateDOM();
 
     const options = {
       method: 'POST',
@@ -248,7 +247,14 @@ class Booking {
       },
       body: JSON.stringify(payload),
     };
-    fetch(url, options);
+    fetch(url, options)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parsedResponse) {
+        console.log('parsedResponse', parsedResponse);
+        console.log(thisBooking.booked);
+      });
     thisBooking.updateDOM();
   }
 

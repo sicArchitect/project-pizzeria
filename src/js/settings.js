@@ -70,6 +70,7 @@ export const select = {
     tables: '.floor-plan .table',
     phone: '[name="phone"]',
     address: '[name="address"]',
+    formSubmit: '.booking-form',
   },
   nav: {
     links: '.main-nav a',
@@ -88,6 +89,7 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    tableSelected: 'clicked',
   },
   nav: {
     active: 'active',

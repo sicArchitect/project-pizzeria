@@ -37,7 +37,6 @@ class Home {
     for (let page of thisHome.pages) {
       if (page.id == idFromHash) {
         pageMatchingHash = page.id;
-        console.log(pageMatchingHash);
         break;
       }
     }

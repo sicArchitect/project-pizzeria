@@ -8,12 +8,12 @@ class Booking {
   constructor(element) {
     const thisBooking = this;
 
-    thisBooking.choosenTable = [];
+    //thisBooking.choosenTable = [];
 
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
-    //thisBooking.bookTables();
+    thisBooking.bookTables();
   }
 
   getData() {
@@ -167,13 +167,13 @@ class Booking {
     }
   }
 
-  render(wrapper) {
+  render(element) {
     const thisBooking = this;
 
     const generatedHTML = templates.bookingWidget();
 
     thisBooking.dom = {};
-    thisBooking.dom.wrapper = wrapper;
+    thisBooking.dom.wrapper = element;
     thisBooking.dom.wrapper.innerHTML = generatedHTML;
 
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(
@@ -190,6 +190,9 @@ class Booking {
     );
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(
       select.booking.tables
+    );
+    thisBooking.dom.diningRoom = thisBooking.dom.wrapper.querySelector(
+      select.booking.diningRoom
     );
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(
       select.booking.phone
@@ -261,27 +264,40 @@ class Booking {
   bookTables() {
     const thisBooking = this;
 
-    thisBooking.element.addEventListener('click', function (event) {
+    let tableId = '';
+
+    thisBooking.dom.diningRoom.addEventListener('click', function (event) {
       const clickedElement = event.target;
-      const table = clickedElement.getAttribute(thisBooking);
-      if (clickedElement != null) {
+      const table = clickedElement.getAttribute(
+        settings.bookings.tableIdAttribute
+      );
+      if (table != null) {
         if (
           !clickedElement.classList.contains(classNames.booking.tableBooked)
         ) {
           console.log('table available');
-          const tables = thisBooking.element.querySelectorAll(
+          const tables = thisBooking.dom.wrapper.querySelectorAll(
             select.booking.tables
           );
 
-          for (let table of tables) {
-            table.classList.remove(classNames.booking.tableSelected);
-          }
-          clickedElement.classList.toggle(classNames.booking.tableSelected);
-          thisBooking.chosenTable.push(table);
-        } else {
-          console.log('table unavailable');
+          if (
+            !clickedElement.classList.contains(classNames.booking.tableSelected)
+          )
+            for (let table of tables) {
+              table.classList.remove(classNames.booking.tableSelected);
+              tableId = '';
+            }
+          clickedElement.classList.add(classNames.booking.tableSelected);
+
+          const clickedElementId = clickedElement.getAttribute('data-table');
+          tableId = clickedElementId;
+          thisBooking.tableId = parseInt(tableId);
+          console.log('tableid', tableId);
+        } else if (
+          clickedElement.classList.contains(classNames.booking.tableSelected)
+        ) {
+          clickedElement.classList.remove(classNames.booking.tableSelected);
         }
-        console.log('tableChosen', thisBooking.chosenTable);
       }
     });
   }

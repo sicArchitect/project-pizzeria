@@ -86,7 +86,7 @@ export const classNames = {
   cart: {
     wrapperActive: 'active',
   },
-  booking: {
+  bookings: {
     loading: 'loading',
     tableBooked: 'booked',
     tableSelected: 'clicked',

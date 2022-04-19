@@ -158,9 +158,9 @@ class Booking {
         !allAvailable &&
         thisBooking.booked[thisBooking.date][thisBooking.hour].includes(tableId)
       ) {
-        table.classList.add(classNames.booking.tableBooked);
+        table.classList.add(classNames.bookings.tableBooked);
       } else {
-        table.classList.remove(classNames.booking.tableBooked);
+        table.classList.remove(classNames.bookings.tableBooked);
       }
     }
   }
@@ -233,12 +233,12 @@ class Booking {
   sendBooking() {
     const thisBooking = this;
 
-    const url = settings.db.url + '/' + settings.db.booking;
+    const url = settings.db.url + '/' + settings.db.bookings;
 
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.dom.tableId,
+      table: thisBooking.tableId,
       duration: parseInt(thisBooking.hoursAmountElem.value),
       ppl: parseInt(thisBooking.peopleAmountElem.value),
       starters: thisBooking.starters,
@@ -252,7 +252,6 @@ class Booking {
       payload.duration,
       payload.table
     );
-    thisBooking.updateDOM();
 
     const options = {
       method: 'POST',
@@ -277,7 +276,7 @@ class Booking {
       );
       if (table != null) {
         if (
-          !clickedElement.classList.contains(classNames.booking.tableBooked)
+          !clickedElement.classList.contains(classNames.bookings.tableBooked)
         ) {
           console.log('table available');
           const tables = thisBooking.dom.wrapper.querySelectorAll(
@@ -285,13 +284,15 @@ class Booking {
           );
 
           if (
-            !clickedElement.classList.contains(classNames.booking.tableSelected)
+            !clickedElement.classList.contains(
+              classNames.bookings.tableSelected
+            )
           )
             for (let table of tables) {
-              table.classList.remove(classNames.booking.tableSelected);
+              table.classList.remove(classNames.bookings.tableSelected);
               thisBooking.tableId = '';
             }
-          clickedElement.classList.add(classNames.booking.tableSelected);
+          clickedElement.classList.add(classNames.bookings.tableSelected);
 
           const clickedElementId = clickedElement.getAttribute('data-table');
           tableId = clickedElementId;

@@ -190,7 +190,7 @@
     }
   }
 
-  &.clicked {
+  &.selected {
     color: lighten($color-dark, 40%);
 
     &::after {

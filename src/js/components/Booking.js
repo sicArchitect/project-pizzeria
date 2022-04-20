@@ -299,9 +299,9 @@ class Booking {
           thisBooking.tableId = parseInt(tableId);
           console.log('tableid', thisBooking.tableId);
         } else if (
-          clickedElement.classList.contains(classNames.booking.tableSelected)
+          clickedElement.classList.contains(classNames.bookings.tableSelected)
         ) {
-          clickedElement.classList.remove(classNames.booking.tableSelected);
+          clickedElement.classList.remove(classNames.bookings.tableSelected);
         }
       }
     });

@@ -204,9 +204,14 @@ class Booking {
     thisBooking.dom.tableId = thisBooking.dom.wrapper.querySelector(
       settings.bookings.tableIdAttribute
     );
+    thisBooking.dom.bookingStarterOption =
+      thisBooking.dom.wrapper.querySelector(
+        select.booking.bookingStarterOption
+      );
 
     thisBooking.starters = [];
   }
+
   initWidgets() {
     const thisBooking = this;
 
@@ -226,6 +231,27 @@ class Booking {
       function (event) {
         event.preventDefault();
         thisBooking.sendBooking();
+      }
+    );
+
+    thisBooking.dom.bookingStarterOption.addEventListener(
+      'click',
+      function (event) {
+        const starter = event.target;
+
+        if (
+          starter.getAttribute('type') === 'checkbox' &&
+          starter.getAttribute('name') === 'starter'
+        ) {
+          if (starter.checked) {
+            thisBooking.starters.push(starter.value);
+            console.log(thisBooking.starters);
+          } else if (!starter.checked) {
+            const starterId = thisBooking.starters.indexOf(starter.value);
+            thisBooking.starters.splice(starterId, 1);
+            console.log(thisBooking.starters);
+          }
+        }
       }
     );
   }

@@ -206,9 +206,6 @@ class Booking {
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(
       select.booking.address
     );
-    thisBooking.dom.tableId = thisBooking.dom.wrapper.querySelector(
-      settings.bookings.tableIdAttribute
-    );
     thisBooking.dom.bookingStarterOption =
       thisBooking.dom.wrapper.querySelector(
         select.booking.bookingStarterOption
@@ -277,13 +274,6 @@ class Booking {
       address: thisBooking.dom.address.value,
     };
 
-    thisBooking.makeBooked(
-      payload.date,
-      payload.hour,
-      payload.duration,
-      payload.table
-    );
-
     const options = {
       method: 'POST',
       headers: {
@@ -292,7 +282,13 @@ class Booking {
       body: JSON.stringify(payload),
     };
     fetch(url, options);
-    thisBooking.updateDOM();
+
+    thisBooking.makeBooked(
+      payload.date,
+      payload.hour,
+      payload.duration,
+      payload.table
+    );
   }
 
   bookTables() {
@@ -303,7 +299,9 @@ class Booking {
       const table = clickedElement.getAttribute(
         settings.bookings.tableIdAttribute
       );
-      console.log(table);
+
+      let tableId = '';
+
       if (table != null) {
         if (
           !clickedElement.classList.contains(classNames.bookings.tableBooked)
@@ -314,6 +312,7 @@ class Booking {
           );
           for (let table of tables) {
             table.classList.remove(classNames.bookings.tableSelected);
+            let tableId = '';
           }
           clickedElement.classList.toggle(classNames.bookings.tableSelected);
         } else {

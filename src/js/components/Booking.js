@@ -140,6 +140,11 @@ class Booking {
 
     let allAvailable = false;
 
+    const tables = thisBooking.dom.tables;
+    for (let table of tables) {
+      table.classList.remove(classNames.bookings.tableSelected);
+    }
+
     if (
       typeof thisBooking.booked[thisBooking.date] == 'undefined' ||
       typeof thisBooking.booked[thisBooking.date][thisBooking.hour] ==
@@ -293,13 +298,12 @@ class Booking {
   bookTables() {
     const thisBooking = this;
 
-    let tableId = '';
-
     thisBooking.dom.diningRoom.addEventListener('click', function (event) {
       const clickedElement = event.target;
       const table = clickedElement.getAttribute(
         settings.bookings.tableIdAttribute
       );
+      console.log(table);
       if (table != null) {
         if (
           !clickedElement.classList.contains(classNames.bookings.tableBooked)
@@ -308,26 +312,12 @@ class Booking {
           const tables = thisBooking.dom.wrapper.querySelectorAll(
             select.booking.tables
           );
-
-          if (
-            !clickedElement.classList.contains(
-              classNames.bookings.tableSelected
-            )
-          )
-            for (let table of tables) {
-              table.classList.remove(classNames.bookings.tableSelected);
-              thisBooking.tableId = '';
-            }
-          clickedElement.classList.add(classNames.bookings.tableSelected);
-
-          const clickedElementId = clickedElement.getAttribute('data-table');
-          tableId = clickedElementId;
-          thisBooking.tableId = parseInt(tableId);
-          console.log('tableid', thisBooking.tableId);
-        } else if (
-          clickedElement.classList.contains(classNames.bookings.tableSelected)
-        ) {
-          clickedElement.classList.remove(classNames.bookings.tableSelected);
+          for (let table of tables) {
+            table.classList.remove(classNames.bookings.tableSelected);
+          }
+          clickedElement.classList.toggle(classNames.bookings.tableSelected);
+        } else {
+          console.log('table unavailable');
         }
       }
     });

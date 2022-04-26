@@ -71,7 +71,7 @@ export const select = {
     phone: '[name="phone"]',
     address: '[name="address"]',
     formSubmit: '.booking-form',
-    bookingStarterOption: 'booking-starter-option',
+    bookingStarterOption: '.booking-starter-option',
   },
   nav: {
     links: '.main-nav a',

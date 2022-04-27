@@ -10,7 +10,8 @@ export const select = {
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
-    home: '.home-wrapper',
+    homePage: '.home-wrapper',
+    carousel: '.carousel',
   },
   all: {
     menuProducts: '#product-list > .product',

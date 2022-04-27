@@ -1,12 +1,13 @@
 import { select, templates, classNames } from '../settings.js';
 import utils from '../utils.js';
+import Carousel from './Carousel.js';
 
 class Home {
   constructor(element) {
     const thisHome = this;
 
     thisHome.render(element);
-    thisHome.initWidgets();
+    thisHome.initCarousel(thisHome.dom.carousel);
   }
 
   render(element) {
@@ -17,15 +18,14 @@ class Home {
     /* create element using utils.createElementFromHTML */
     thisHome.element = utils.createDOMFromHTML(generatedHTML);
     /* find menu container */
-    const homeContainer = document.querySelector(select.containerOf.home);
+    const homeContainer = document.querySelector(select.containerOf.homePage);
     /* add element to menu */
+
     homeContainer.appendChild(thisHome.element);
 
-    thisHome.dom = {
-      wrapper: element,
-      carousel: element.querySelector(select.widgets.carousel.wrapper),
-    };
-
+    thisHome.dom = {};
+    thisHome.dom.wrapper = element;
+    thisHome.dom.carousel = element.querySelector(select.containerOf.carousel);
     thisHome.pages = document.querySelector(select.containerOf.pages).children;
     thisHome.navBar = document.querySelectorAll(select.nav.links);
     thisHome.navLinks = document.querySelectorAll(select.nav.homeLinks);
@@ -81,8 +81,9 @@ class Home {
     }
   }
 
-  /* eslint-disable */
-  initWidgets() {}
+  initCarousel(element) {
+    new Carousel(element);
+  }
 }
 
 export default Home;

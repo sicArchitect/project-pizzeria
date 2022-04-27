@@ -62,8 +62,7 @@ const app = {
   initHome() {
     const thisApp = this;
 
-    const homeElement = document.querySelector(select.containerOf.home);
-
+    const homeElement = document.querySelector(select.containerOf.homePage);
     thisApp.home = new Home(homeElement);
   },
 

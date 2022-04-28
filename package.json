@@ -23,7 +23,8 @@
     "server": "json-server --port 3131 --no-cors --delay 250 --watch src/db/app.json",
     "watch": "npm-run-all build build-dev -p watch:* server",
     "watch:browsersync": "browser-sync start --server dist --files \"dist/**/*\" --ignore \"dist/db/**/*\"",
-    "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} dist"
+    "watch:copy": "onchange -e \"**/sass/**/*\" -e \"**/.gitkeep\" \"src/**/*\" -- copyfiles -a -u 1 {{changed}} dist",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
